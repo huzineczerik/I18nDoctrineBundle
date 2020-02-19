@@ -15,10 +15,13 @@
         }
     ],
     "require": {
-	"php": ">=7.1"
+	    "php": ">=7.1"
     },
     "autoload": {
-	"classmap": ["src/"]
+	"classmap": ["src/"],
+        "psr-4": {
+            "A2lix\\I18nDoctrineBundle\\": "src/"
+        }
     },
     "extra": {
         "branch-alias": {
