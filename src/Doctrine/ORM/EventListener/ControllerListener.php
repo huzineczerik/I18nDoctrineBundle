@@ -5,6 +5,7 @@ namespace A2lix\I18nDoctrineBundle\Doctrine\ORM\EventListener;
 use A2lix\I18nDoctrineBundle\EventListener\ControllerListener as BaseControllerListener,
     Symfony\Component\HttpKernel\Event\FilterControllerEvent,
     Doctrine\Common\Util\ClassUtils;
+use Symfony\Component\HttpKernel\Controller\ErrorController;
 
 /**
  * Controller Listener
@@ -21,6 +22,9 @@ class ControllerListener extends BaseControllerListener
     public function onKernelController(FilterControllerEvent $event)
     {
         $controller = $event->getController();
+        if($controller instanceof ErrorController){
+            return;
+        }
         list($object, $method) = $controller;
 
         $className = ClassUtils::getClass($object);
